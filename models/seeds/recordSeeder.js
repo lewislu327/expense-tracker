@@ -8,31 +8,36 @@ const records =[
       "name": "早餐",
       "date": "2021-02-30",
       "category": "food",
-      "amount": 150
+      "amount": 150,
+      "icon": 'fas fa-utensils'
     },
     {
       "name": "計程車",
       "date": "2021-03-01",
       "category": "traffic",
-      "amount": 1500
+      "amount": 1500,
+      "icon": 'fas fa-shuttle-van'
     },
     {
       "name": "電子書閱讀器",
       "date": "2021-03-27",
       "category": "entertainment",
-      "amount": 5000
+      "amount": 5000,
+      "icon": 'fas fa-grin-beam'
     },
     {
       "name": "電競椅",
       "date": "2021-04-14",
       "category": "house",
-      "amount": 7500
+      "amount": 7500,
+      "icon":"fas fa-home"
     },
     {
       "name": "孝親費",
       "date": "2021-5-20",
       "category": "others",
-      "amount": 16800
+      "amount": 16800,
+      "icon": 'fas fa-pen'
     }
   ]
 
