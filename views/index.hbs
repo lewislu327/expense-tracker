@@ -1,1 +1,36 @@
-<h2>Hello world! 這是 index</h2>
+<div class="container d-flex justify-content-center">
+  <div class="list-group col-auto" style="width:200px">
+    <div class="category-filter my-3">
+      <select class="form-select" style="width:200px" onchange="javascript:location.href=this.value;" aria-label="Default select example">
+        <option selected>類別</option>
+        <option value="http://localhost:3000">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="total">
+      <h5 class="d-flex justify-content-start">總金額</h5>
+      <div class="totalamount d-flex justify-content-end">xxx</div>
+    </div>
+    <div class="row expense mt-2" style="width:500px">
+      {{#each records}}
+      <div class="row each-expense d-flex align-items-center justify-content-around" style="width: 500px">
+        <i class="{{this.icon}} fa-2x mr-2 pb-3"></i>
+        <div class="name-date">
+          <span>{{{this.name}}}</span>
+          <p>{{{this.date}}}</p>
+        </div>
+        <p class="ml-5">{{{this.amount}}}</p>
+        <a class="btn btn-light ml-5" href="/">編輯</a>
+        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display:inline;">
+          <button class="btn btn-light ml-4" type="submit">刪除</button>
+        </form>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="create-btn mt-3">
+      <a class="btn btn-success w-100" href="/">新增支出</a>
+    </div>
+  </div>  
+</div>

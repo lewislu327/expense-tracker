@@ -7,6 +7,8 @@ const db = mongoose.connection
 const exphbs = require('express-handlebars')
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', 'hbs')
+const Record = require('./models/Record')
+
 
 db.on('error', () => {
   console.log('mongodb error!')
@@ -19,7 +21,10 @@ db.once('open', () => {
 
 
 app.get('/', (req, res) => {
-   res.render('index')
+  Record.find()
+  .lean() 
+  .then( records => res.render('index', {records} ))
+  .catch(error => console.error(error))
 })
 
 
