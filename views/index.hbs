@@ -22,7 +22,7 @@
         </div>
         <p class="ml-5">{{{this.amount}}}</p>
         <a class="btn btn-light ml-5" href="./{{this._id}}/edit">編輯</a>
-        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display:inline;">
+        <form action="./{{ this._id }}/delete" method="POST" style="display:inline;">
           <button class="btn btn-light ml-4" type="submit">刪除</button>
         </form>
       </div>
