@@ -7,6 +7,7 @@ const db = mongoose.connection
 const exphbs = require('express-handlebars')
 const hbshelpers = require('handlebars-helpers')
 const multihelpers = hbshelpers()
+const methodOverride = require('method-override') 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: multihelpers}))
 app.set('view engine', 'hbs')
 const Record = require('./models/Record')
@@ -21,6 +22,7 @@ db.once('open', () => {
 })
 
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 
 app.get('/', (req, res) => {
@@ -76,7 +78,7 @@ app.get('/:id/edit', (req, res) => {
 })
 
 
-app.post('/:id/edit', (req, res) => {
+app.put('/:id/edit', (req, res) => {
   const id = req.params.id
   const {name, date, category, amount, category_cn} = req.body
 
@@ -99,7 +101,7 @@ app.post('/:id/edit', (req, res) => {
   })  
 })
 
-app.post('/:id/delete', (req, res) => {
+app.delete('/:id/delete', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .then(record => record.remove())
