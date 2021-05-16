@@ -8,7 +8,11 @@ router.get('/filter/:category', (req, res) => {
   Record.find({ category})
   .lean()
   .sort({ date: 'asc' }) 
-  .then( records => res.render('index', {records} ))
+  .then(records => {
+    const total = []
+    records.forEach(data => total.push(Number(data.amount)))
+    (res.render('index', {records, total} ))
+    })
   .catch(error => console.error(error))
 
 })

@@ -1,11 +1,11 @@
 
 
 <div class="container d-flex justify-content-center">  
-  <div class="list-group col-auto" style="width:200px">
+  <div class="list-group col-auto">
     <div class="dropdown d-flex justify-content-center my-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      <button class="btn btn-secondary dropdown-toggle w-50" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
         aria-expanded="false">
-        Dropdown button
+        項目
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" href="/filter/food">Food</a></li>
@@ -15,9 +15,9 @@
         <li><a class="dropdown-item" href="/filter/others">Others</a></li>
       </ul>
     </div>
-    <div class="total">
-      <h5 class="d-flex justify-content-start">總金額</h5>
-      <div class="totalamount d-flex justify-content-end">{{#sum total}}{{/sum}}</div>
+    <div class="total d-flex justify-content-end mr-4">
+      <h5 class="my-2 mr-2">總金額</h5>
+      <div class="totalamount d-flex justify-content-end"><h1>{{#sum total}}{{/sum}}</h1></div>
     </div>
     <div class="row expense mt-2" style="width:500px">
       {{#each records}}
@@ -36,8 +36,8 @@
       {{/each}}
     </div>
 
-    <div class="create-btn mt-3">
-      <a class="btn btn-success w-100" href="/new">新增支出</a>
+    <div class="create-btn mt-3 text-center">
+      <a class="btn btn-success w-50" href="/new">新增支出</a>
     </div>
   </div>  
 </div>
