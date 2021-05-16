@@ -1,8 +1,5 @@
-const mongoose = require('mongoose')
+const db = require('../../config/mongoose')
 const Category = require('../Category')
-mongoose.connect('mongodb://localhost/expense-tracker',{ useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-
 const categories = [
     {
       "category": "house",
@@ -31,9 +28,6 @@ const categories = [
     }
   ]
 
-db.on('error', () => {
-  console.log('mongodb error!')
-})
 db.once('open', () => { 
   Category.create(...categories)
   .then(() => {  

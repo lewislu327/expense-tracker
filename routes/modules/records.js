@@ -34,6 +34,7 @@ router.post('/', (req, res) => {
 
 router.get('/:id/edit', (req, res) => { 
   const id = req.params.id
+  //這邊可能可以優化
   const categoryList = []
   Category.find()
     .lean()
