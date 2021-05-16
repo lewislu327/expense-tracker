@@ -25,10 +25,22 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Record.find()
-  .lean() 
+  .lean()
+  .sort({ date: 'asc' }) 
   .then( records => res.render('index', {records} ))
   .catch(error => console.error(error))
 })
+
+app.get('/filter/:category', (req, res) => {
+  const category = req.params.category
+  Record.find({ category})
+  .lean()
+  .sort({ date: 'asc' }) 
+  .then( records => res.render('index', {records} ))
+  .catch(error => console.error(error))
+
+})
+
 
 app.get('/new', (req, res) => {
   return res.render('new')

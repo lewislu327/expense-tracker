@@ -34,7 +34,7 @@ const records =[
     },
     {
       "name": "孝親費",
-      "date": "2021-5-20",
+      "date": "2021-05-20",
       "category": "others",
       "amount": 16800,
       "icon": 'fas fa-pen'
