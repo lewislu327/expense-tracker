@@ -6,7 +6,7 @@ const db = mongoose.connection
 const records =[
     {
       "name": "早餐",
-      "date": "2021-02-30",
+      "date": "2021-02-22",
       "category": "food",
       "amount": 150,
       "icon": 'fas fa-utensils'
