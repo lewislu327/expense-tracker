@@ -9,6 +9,7 @@ const methodOverride = require('method-override')
 const routes = require('./routes') 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: multihelpers}))
 app.set('view engine', 'hbs')
+require('./config/mongoose') 
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
