@@ -1,4 +1,5 @@
 const express = require('express')
+const Category = require('../../models/Category')
 const router = express.Router()
 const Record = require('../../models/Record')
 
@@ -12,8 +13,11 @@ router.get('/', (req, res) => {
     for (let i = 0; i < records.length; i++) {
       total += records[i].amount
     }
-    (res.render('index', {records, total} ))
-    })
+    Category.find()
+    .lean()
+    .then(category => res.render('index', {records, total, category })
+    )
+  })
   .catch(error => console.error(error))
 })
 

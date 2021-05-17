@@ -5,7 +5,7 @@ const Category = require('../../models/Category')
 
 router.get('/filter/:category', (req, res) => {
   const category = req.params.category
-  Record.find({ category})
+  Record.find({category})
   .lean()
   .sort({ date: 'asc' }) 
   .then( function(records){
@@ -13,10 +13,11 @@ router.get('/filter/:category', (req, res) => {
     for (let i = 0; i < records.length; i++) {
       total += records[i].amount
     }
-    res.render('index', {records, total} )
+    Category.find()
+    .lean()
+    .then(category => res.render('index', {records, total, category }))
   }) 
-    .catch(error => console.error(error))
-    
+    .catch(error => console.error(error))  
 })
 
 
@@ -41,17 +42,14 @@ router.post('/', (req, res) => {
 
 router.get('/:id/edit', (req, res) => { 
   const id = req.params.id
-  //這邊可能可以優化
-  const categoryList = []
-  Category.find()
-    .lean()
-    .then((items) => {
-      items.forEach((item) => categoryList.push(item))
-    })
 
-  return Record.findById(id)
+  return Category.find()
+  .lean()
+  .then((category) => {
+    Record.findById(id)
     .lean()
-    .then((record) => res.render('edit', { record, categoryList }))
+    .then((record) => res.render('edit', { record, category }))
+  }).catch(error => console.log(error))  
 })
 
 
@@ -65,15 +63,13 @@ router.put('/:id/edit', (req, res) => {
       record.date = date
       record.category = category
       record.amount = amount
-      Category.findOne({ category: category })
+      Category.findOne({category})
       .lean()
-      .then(function (item) {
-      return (record.icon = item.categoryIcon)   
-      })
+      .then((item) => (record.icon = item.categoryIcon))
     .then(() => {
         record.save()
+        .then(()=> res.redirect('/'))
       })
-    .then(()=> res.redirect('/'))
     .catch(error => console.log(error))
   })  
 })

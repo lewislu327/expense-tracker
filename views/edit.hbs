@@ -29,7 +29,7 @@
       <div class="col-4">
         <select name="category" id="input-category" class="btn btn-outline-dark w-50" required>
           <option value=""disabled selected hidden>-- Select --</option>
-          {{#each categoryList}}
+          {{#each category}}
            <option value="{{this.category}}" {{#is ../record.category ./this.category}}selected {{/is}} >{{this.category_cn}}</option>
           {{/each}}
         </select>
