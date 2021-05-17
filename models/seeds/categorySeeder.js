@@ -1,39 +1,15 @@
 const db = require('../../config/mongoose')
 const Category = require('../Category')
-const categories = [
-    {
-      "category": "house",
-      "category_cn": "-- 家居物業 --",
-      "categoryIcon": "fas fa-home"
-    },
-    {
-      "category": "traffic",
-      "category_cn": "-- 交通出行 --",
-      "categoryIcon": "fas fa-shuttle-van"
-    },
-    {
-      "category": "entertainment",
-      "category_cn": "-- 休閒娛樂 --",
-      "categoryIcon": "fas fa-grin-beam"
-    },
-    {
-      "category": "food",
-      "category_cn": "-- 餐飲食品 --",
-      "categoryIcon": "fas fa-utensils"
-    },
-    {
-      "category": "others",
-      "category_cn": "-- 其他 --",
-      "categoryIcon": "fas fa-pen"
-    }
-  ]
+const { categories } = require('./seeds.json')
 
 db.once('open', () => { 
-  Category.create(...categories)
-  .then(() => {  
-  console.log('category seeder loaded!')
-  return db.close()
-  })
+  Category.create(categories)
+    .then(() => {
+      console.log('Category created!')
+      return db.close()
+    })
+    .then(() => console.log('Database connection closed'))
+    .catch(error => console.log(error))
 })
   
 
