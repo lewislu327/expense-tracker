@@ -8,13 +8,15 @@ router.get('/filter/:category', (req, res) => {
   Record.find({ category})
   .lean()
   .sort({ date: 'asc' }) 
-  .then(records => {
-    const total = []
-    records.forEach(data => total.push(Number(data.amount)))
-    (res.render('index', {records, total} ))
-    })
-  .catch(error => console.error(error))
-
+  .then( function(records){
+    let total = 0
+    for (let i = 0; i < records.length; i++) {
+      total += records[i].amount
+    }
+    res.render('index', {records, total} )
+  }) 
+    .catch(error => console.error(error))
+    
 })
 
 
@@ -28,12 +30,13 @@ router.post('/', (req, res) => {
   Category.findOne({ category: category })
     .lean()
     .then(function (item) {
-      return (record.icon = item.categoryIcon)
+      return (record.icon = item.categoryIcon)   
+      })
+    .then(()=> {
+      Record.create(record)
+      .then(() => res.redirect('/'))
+      .catch(error => console.log(error))
     })
-    .then(() => {
-      Record.create(record).then(() => res.redirect('/'))
-    })
-    .catch((error) => console.log(error))
 })
 
 router.get('/:id/edit', (req, res) => { 

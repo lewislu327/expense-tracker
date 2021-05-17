@@ -8,8 +8,10 @@ router.get('/', (req, res) => {
   .lean()
   .sort({ date: 'asc' }) 
   .then( records => {
-    const total = []
-    records.forEach(data => total.push(Number(data.amount)))
+    let total = 0
+    for (let i = 0; i < records.length; i++) {
+      total += records[i].amount
+    }
     (res.render('index', {records, total} ))
     })
   .catch(error => console.error(error))
