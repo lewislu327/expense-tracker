@@ -7,11 +7,22 @@ const hbshelpers = require('handlebars-helpers')
 const multihelpers = hbshelpers()
 const methodOverride = require('method-override')
 const routes = require('./routes') 
+const session = require('express-session')
+const usePassport = require('./config/passport')
+
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: multihelpers}))
 app.set('view engine', 'hbs')
 
+app.use(session({
+  secret: 'helloWorld',
+  resave: false,
+  saveUninitialized: true
+}))
+
+
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+usePassport(app)
 app.use(routes)
 
 
