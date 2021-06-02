@@ -28,44 +28,46 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   const record = req.body
   const category = req.body.category
-  Category.findOne({ category: category })
+  const userId = req.user._id 
+  Category.findOne({ category })
     .lean()
-    .then(function (item) {
-      return (record.icon = item.categoryIcon)   
-      })
+    .then( item => (record.icon = item.categoryIcon))
     .then(()=> {
-      Record.create(record)
-      .then(() => res.redirect('/'))
-      .catch(error => console.log(error))
+      const {name, date, category, amount, icon} = record
+      return Record.create({ name, date, category, amount, icon, userId })
+        .then(() => res.redirect('/'))     
     })
+    .catch(error => console.log(error))
 })
 
 router.get('/:id/edit', (req, res) => { 
-  const id = req.params.id
-
+  const _id = req.params.id
+  const userId = req.user._id
   return Category.find()
   .lean()
   .then((category) => {
-    Record.findById(id)
+    Record.findOne({ _id, userId })
     .lean()
     .then((record) => res.render('edit', { record, category }))
-  }).catch(error => console.log(error))  
+  })
+  .catch(error => console.log(error))  
 })
 
 
 router.put('/:id/edit', (req, res) => {
-  const id = req.params.id
-  const {name, date, category, amount, category_cn} = req.body
+  const _id = req.params.id
+  const userId = req.user._id
+  const { name, date, category, amount } = req.body
 
-  return Record.findById(id)
+  return Record.findOne({ _id, userId })
     .then(record => {
       record.name = name
       record.date = date
       record.category = category
       record.amount = amount
-      Category.findOne({category})
+      Category.findOne({ category })
       .lean()
-      .then((item) => (record.icon = item.categoryIcon))
+      .then( item => (record.icon = item.categoryIcon))
     .then(() => {
         record.save()
         .then(()=> res.redirect('/'))
@@ -75,8 +77,9 @@ router.put('/:id/edit', (req, res) => {
 })
 
 router.delete('/:id/delete', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  return Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
