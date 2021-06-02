@@ -11,15 +11,15 @@
   integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 
-<body>
-    <nav class="navbar navbar-light bg-light">
+<body style="background-color: #f0efeb;"> 
+    <nav class="navbar navbar-light" style="background-color: #e5e5e5;"> 
       <a href="/" class="navbar-brand ms-5"><h3> 
         {{#if isAuthenticated}} 
         {{ user.name}}'s 
         {{/if}}家庭記帳本</h3>
       </a>
       {{#if isAuthenticated}}
-      <a href="/users/logout" class="btn btn-success me-5">Logout</a>
+      <a href="/users/logout" class="btn btn-success me-5" style="background-color: #bab9b5">Logout</a>
       {{else}}
       <a href="/users/login" class="btn btn-dark me-5">Login</a>
       {{/if}}

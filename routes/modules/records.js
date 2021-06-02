@@ -5,7 +5,8 @@ const Category = require('../../models/Category')
 
 router.get('/filter/:category', (req, res) => {
   const category = req.params.category
-  Record.find({category})
+  const userId = req.user._id 
+  Record.find({category, userId})
   .lean()
   .sort({ date: 'asc' }) 
   .then( function(records){
@@ -33,8 +34,8 @@ router.post('/', (req, res) => {
     .lean()
     .then( item => (record.icon = item.categoryIcon))
     .then(()=> {
-      const {name, date, category, amount, icon} = record
-      return Record.create({ name, date, category, amount, icon, userId })
+      const {merchant, name, date, category, amount, icon} = record
+      return Record.create({ merchant,name, date, category, amount, icon, userId })
         .then(() => res.redirect('/'))     
     })
     .catch(error => console.log(error))
@@ -57,10 +58,11 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', (req, res) => {
   const _id = req.params.id
   const userId = req.user._id
-  const { name, date, category, amount } = req.body
+  const { name, date, category, amount, merchant } = req.body
 
   return Record.findOne({ _id, userId })
     .then(record => {
+      record.merchant = merchant
       record.name = name
       record.date = date
       record.category = category

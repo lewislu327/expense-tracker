@@ -15,18 +15,21 @@
       <h5 class="my-2 mr-2">總金額</h5>
       <div class="totalamount d-flex justify-content-end"><h1>{{total}}</h1></div>
     </div>
-    <div class="row expense mt-2" style="width:500px">
+    <div class="row expense mt-2 m-auto" style="width:500px">
       {{#each records}}
-      <div class="row each-expense d-flex align-items-center justify-content-around" style="width: 500px">
+      <div class="column each-expense d-flex align-items-center justify-content-around">
         <i class="{{this.icon}} fa-2x mr-2 pb-3"></i>
+        <div class="merchant">
+          <h5>{{{this.merchant}}}</h5>
+        </div>
         <div class="name-date">
           <span>{{{this.name}}}</span>
           <p>{{{this.date}}}</p>
         </div>
-        <p class="ml-5">{{{this.amount}}}</p>
-        <a class="btn btn-light ml-5" href="/{{this._id}}/edit">編輯</a>
+        <p class="ml-5">${{{this.amount}}}</p>
+        <a class="btn btn-light ml-5" style="background-color: #e3e3e0" href="/{{this._id}}/edit">編輯</a>
         <form action="/{{ this._id }}/delete?_method=DELETE" method="POST" style="display:inline;">
-          <button class="btn btn-light ml-4" type="submit">刪除</button>
+          <button class="btn btn-light ml-4" style="background-color: #e3e3e0" type="submit">刪除</button>
         </form>
       </div>
       {{/each}}

@@ -1,13 +1,21 @@
 <div class="container">
   <form action="/" method="POST">
     <div class="row">
-      <div class="col-4 text-danger h6 text-right mt-5 pr-4">*必填項目</div>
+      <div class="col-4 text-danger h6 text-end mt-5 pe-4">*必填項目</div>
       <div class="col-4 title d-flex justify-content-center my-2">
         <h1>請輸入你的支出</h1>
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
+        <label for="merchant" class="col-form-label">*店家：</label>
+      </div>
+      <div class="col-4">
+        <input type="text" id="merchant" name="merchant" class="form-control" aria-describedby="itemHelp" required>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-4 text-end">
         <label for="input-item" class="col-form-label">*項目名稱：</label>
       </div>
       <div class="col-4">
@@ -15,7 +23,7 @@
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
         <label for="input-date" class="col-form-label">*日期：</label>
       </div>
       <div class="col-4">
@@ -23,12 +31,12 @@
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
         <label for="input-category" class="col-form-label">*類別：</label>
       </div>
       <div class="col-4">
-        <select name="category" id="input-category"   class="btn btn-outline-dark w-50" required>
-          <option value="" disabled selected hidden>-- Select --</option>
+        <select name="category" id="input-category"   class="form-select w-50" required>
+          <option selected>-- 請選擇支出類別 --</option>
           <option value="house">-- 家居物業 --</option>
           <option value="traffic">-- 交通出行 --</option>
           <option value="entertainment">-- 休閒娛樂 --</option>
@@ -38,7 +46,7 @@
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
         <label for="input-cost" class="col-form-label">*金額：</label>
       </div>
       <div class="col-4">

@@ -1,13 +1,22 @@
 <div class="container">
   <form action="/{{record._id}}/edit?_method=PUT" method="POST">
     <div class="row">
-      <div class="col-4 text-danger h6 text-right mt-5 pr-4">*必填項目</div>
+      <div class="col-4 text-danger h6 text-end mt-5 pe-4">*必填項目</div>
       <div class="col-4 title d-flex justify-content-center my-2">
         <h1>請輸入你的支出</h1>
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
+        <label for="merchant" class="col-form-label">*店家：</label>
+      </div>
+      <div class="col-4">
+        <input type="text" id="merchant" name="merchant" value="{{ record.merchant }}" class="form-control"
+          aria-describedby="itemHelp" required>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-4 text-end">
         <label for="input-item" class="col-form-label">*項目名稱：</label>
       </div>
       <div class="col-4">
@@ -15,7 +24,7 @@
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
         <label for="input-date" class="col-form-label">*日期：</label>
       </div>
       <div class="col-4">
@@ -23,7 +32,7 @@
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
         <label for="input-category" class="col-form-label">*類別：</label>
       </div>
       <div class="col-4">
@@ -36,11 +45,11 @@
       </div>
     </div>
     <div class="row my-3">
-      <div class="col-4 text-right">
+      <div class="col-4 text-end">
         <label for="input-cost" class="col-form-label">*金額：</label>
       </div>
       <div class="col-4">
-        <input type="number" min="0" max="9999999999999" class="w-50" id="input-cost" name="amount" value="{{ record.amount }}" categoryclass="form-control"
+        <input type="number" min="0" max="9999999999999" class="w-50" id="input-cost" name="amount" value="{{ record.amount }}" class="form-control"
           aria-describedby="itemHelp" required>
       </div>
     </div>
