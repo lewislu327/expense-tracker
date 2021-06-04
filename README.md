@@ -2,7 +2,9 @@
 
 A simple web application for expense tracker
 
-# Web Home Page
+# Web Login & Home Page
+
+<img align="center" src="https://github.com/lewislu327/expense-tracker/blob/master/Web%20login%20page.png" width="750"/>
 
 <img align="center" src="https://github.com/lewislu327/expense-tracker/blob/master/Web%20homepage.png" width="750"/>
 
