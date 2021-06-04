@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const express = require('express')
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 require('./config/mongoose')
 const exphbs = require('express-handlebars')
 const hbshelpers = require('handlebars-helpers')
@@ -15,7 +18,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: mult
 app.set('view engine', 'hbs')
 
 app.use(session({
-  secret: 'helloWorld',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
