@@ -3,25 +3,6 @@ const router = express.Router()
 const Record = require('../../models/Record')
 const Category = require('../../models/Category')
 
-router.get('/filter/:category', (req, res) => {
-  const category = req.params.category
-  const userId = req.user._id 
-  Record.find({category, userId})
-  .lean()
-  .sort({ date: 'asc' }) 
-  .then( function(records){
-    let total = 0
-    for (let i = 0; i < records.length; i++) {
-      total += records[i].amount
-    }
-    Category.find()
-    .lean()
-    .then(category => res.render('index', {records, total, category }))
-  }) 
-    .catch(error => console.error(error))  
-})
-
-
 router.get('/new', (req, res) => {
   return res.render('new')
 })

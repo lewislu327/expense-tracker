@@ -29,7 +29,7 @@ const recordSchema = new Schema({
   },
   merchant: {
     type: String,
-    // required: true,
+    required: true,
   }
 })
 

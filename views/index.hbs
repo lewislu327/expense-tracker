@@ -1,35 +1,39 @@
 <div class="container d-flex justify-content-center">  
   <div class="list-group col-auto">
-    <div class="dropdown d-flex justify-content-center my-3">
-      <button class="btn btn-secondary dropdown-toggle w-50" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        項目
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        {{#each category}}
-        <li><a class="dropdown-item" href="/filter/{{this.category}}">{{this.category_cn}}</a></li>
-        {{/each}}
-      </ul>
+    <div class="d-flex justify-content-center my-3 ">
+      <form action="/">
+        <div class="form-group mb-2">
+          <input type="month" class="form-control" name="time" placeholder="月份" onchange="submit()" value="{{time}}">
+        </div>
+        <div class="form-group">
+          <select class="form-select" name="category" onchange="submit()">
+            <option value='' {{#is category '' }}selected{{/is}}>項目</option>
+            {{#each category}}
+            <option value="{{category}}" {{#is category ../selectedCategory }}selected{{/is}}>{{category_cn}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </form>
     </div>
-    <div class="total d-flex justify-content-end mr-4">
-      <h5 class="my-2 mr-2">總金額</h5>
+    <div class="total d-flex justify-content-end">
+      <h5 class="my-2 ms-2">總金額</h5>
       <div class="totalamount d-flex justify-content-end"><h1>{{total}}</h1></div>
     </div>
-    <div class="row expense mt-2 m-auto" style="width:500px">
+    <div class="row expense mt-2" style="width:500px">
       {{#each records}}
       <div class="column each-expense d-flex align-items-center justify-content-around">
         <i class="{{this.icon}} fa-2x mr-2 pb-3"></i>
-        <div class="merchant">
+        <div class="merchant text-center" style="width: 100px">
           <h5>{{{this.merchant}}}</h5>
         </div>
-        <div class="name-date">
+        <div class="name-date text-center" style="width: 100px">
           <span>{{{this.name}}}</span>
           <p>{{{this.date}}}</p>
         </div>
-        <p class="ml-5">${{{this.amount}}}</p>
-        <a class="btn btn-light ml-5" style="background-color: #e3e3e0" href="/{{this._id}}/edit">編輯</a>
+        <p class="text-center text-wrap" style="width: 100px">${{{this.amount}}}</p>
+        <a class="btn btn-light" style="background-color: #e3e3e0" href="/{{this._id}}/edit">編輯</a>
         <form action="/{{ this._id }}/delete?_method=DELETE" method="POST" style="display:inline;">
-          <button class="btn btn-light ml-4" style="background-color: #e3e3e0" type="submit">刪除</button>
+          <button class="btn btn-light" style="background-color: #e3e3e0" type="submit">刪除</button>
         </form>
       </div>
       {{/each}}
