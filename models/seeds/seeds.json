@@ -29,6 +29,7 @@
   "records": [
     {
       "name": "早餐",
+      "merchant": "美而美",
       "date": "2021-02-22",
       "category": "food",
       "amount": 150,
@@ -36,6 +37,7 @@
     },
     {
       "name": "計程車",
+      "merchant": "55688",
       "date": "2021-03-01",
       "category": "traffic",
       "amount": 1500,
@@ -43,6 +45,7 @@
     },
     {
       "name": "電子書閱讀器",
+      "merchant": "讀墨",
       "date": "2021-03-27",
       "category": "entertainment",
       "amount": 5000,
@@ -50,13 +53,15 @@
     },
     {
       "name": "電競椅",
+      "merchant": "好市多",
       "date": "2021-04-14",
       "category": "house",
       "amount": 7500,
       "icon":"fas fa-home"
     },
     {
-      "name": "孝親費",
+      "name": "所得稅",
+      "merchant": "政府",
       "date": "2021-05-20",
       "category": "others",
       "amount": 16800,
