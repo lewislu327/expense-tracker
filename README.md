@@ -8,6 +8,12 @@ A simple web application for expense tracker
 
 <img align="center" src="https://github.com/lewislu327/expense-tracker/blob/master/Web%20homepage.png" width="750"/>
 
+##### Example User Information
+
+| Email             | Password |
+| ----------------- | :------: |
+| user1@example.com | 12345678 |
+
 # Project Running Environment
 
 bcryptjs: "^2.4.3",<br>
@@ -61,7 +67,8 @@ passport-local: "^1.0.0"<br>
 ## Features
 
 - Register account by email or FB
-- After login you can only see your own data
+- Bonding data with unique user
+- Protect password by using session and bcrypt
 - Sorting data by month and category
 - Listing seeder records from MangoDB
 - Create your expense record
