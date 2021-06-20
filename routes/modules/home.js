@@ -9,32 +9,36 @@ router.get('/', (req, res) => {
   const time = req.query.time || ''
   const [year, month] = time.split('-')
   const selectedCategory = req.query.category || ''
+  
   Record.find({ userId })
   .lean()
   .sort({ date: 'asc' }) 
   .then( records => {
-    if ( time ) {
-      records = records.filter(items => {
-        if ( moment(items.date).format("YYYY").match(year) && moment(items.date).format("MM").match(month) ) {
-          return items 
-        }
-      })
+    if (time) {
+      Record.find({date: {$gte: time + '-01', $lte: time+'-31' }})
+        .lean()
+        .then(items => {
+          return records = items
+        })
     }
 
     if ( selectedCategory ){
-      records = records.filter( items => {
-        if ( items.category === selectedCategory ) {
-          return items
-        }
-      })
+      Record.find({ category: selectedCategory})
+        .lean()
+        .then(items => {
+          return records = items
+        })
     }
-    let total = 0
-    for (let i = 0; i < records.length; i++) {
-      total += records[i].amount
-    }
+    
     Category.find()
     .lean()
-    .then(category => res.render('index', {records, total, category, time, selectedCategory })
+    .then((category) => {
+      let total = 0
+      for (let i = 0; i < records.length; i++) {
+        total += records[i].amount
+      }
+      res.render('index', {records, total, category, time, selectedCategory }
+      )}
     )
   })
   .catch(error => console.error(error))
